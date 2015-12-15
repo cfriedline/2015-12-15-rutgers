@@ -2,10 +2,10 @@
 layout: workshop
 root: .
 venue: Rutgers University
-address: New Jersey
+address: New Brunswick, New Jersey
 country: US
 language: en
-latlng: (fractional latitude and longitude like 41.7901128,-87.6007318)
+latlng: 40.712784,-74.00594
 humandate: Dec 15-16, 2015
 humantime: 9:00 am - 5:00 pm
 startdate: 2015-12-15
@@ -64,7 +64,9 @@ effectively with data.
 <p>
 We will cover {{page.day1_am}}, {{page.day1_pm}}, {{page.day2_am}} and {{page.day2_pm}}.
 
-Participants should bring their laptops and plan to participate actively. By the end of the workshop learners should be able to more effectively manage and analyze data and be able to apply the tools and approaches directly to their ongoing research.
+Participants should bring their laptops and plan to participate actively. By the end of the workshop learners
+should be able to more effectively manage and analyze data and be able to apply the tools and approaches directly
+to their ongoing research.
 </p>
 
 <!--
@@ -137,22 +139,31 @@ Participants should bring their laptops and plan to participate actively. By the
   to match your plans.  You may also want to change 'Day 1' and 'Day
   2' to be actual dates or days of the week.
 -->
-<h2>Preliminary Schedule</h2>
+<h2>Schedule</h2>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-10">
 
-    <h3>Day 1</h3>
+    <h3>Day 1: 9AM - 5PM </h3>
     <table class="table table-striped">
-      <tr> <td>Morning</td>  <td>{{page.day1_am}}</td> </tr>
-       <tr> <td>Afternoon</td>  <td>{{page.day1_pm}}</td> </tr>
+      <tr> <td colspan=2 style=background:gainsboro><b>Morning</b>:  {{page.day1_am}}</td> </tr>
+      <tr><td><a href=lessons/00-getting-started.html>Getting started with OpenRefine</td><td>Chris</td></tr>
+      <tr><td><a href=lessons/01-working-with-openrefine.html>Working with data</td><td>Chris</td>
+      <tr><td><a href=lessons/02-scripts.html>Scripting OpenRefine</td><td>Chris</td>
+      <tr><td><a href=lessons/03-save-export.html>Saving and Exporting</td><td>Chris</td>
+      <tr><td><a href=lessons/04-services.html>Working with external services</td><td>Chris</td>
+
+       <tr> <td colspan=2 style=background:gainsboro><b>Afternoon</b>:  {{page.day1_pm}}</td> </tr>
     </table>
 
 
-    <h3>Day 2</h3>
+    <h3>Day 2: 9AM - 5PM</h3>
     <table class="table table-striped">
-      <tr> <td>Morning</td>  <td>{{page.day2_am}}</td> </tr>
-      <tr> <td>Afternoon</td>  <td>{{page.day2_pm}}</td> </tr>
+    <tr> <td colspan=2 style=background:gainsboro><b>Morning</b>:  {{page.day2_am}}</td> </tr>
+    <tr><td></tr>
+
+    <tr> <td colspan=2 style=background:gainsboro><b>Afternoon</b>:  {{page.day2_pm}}</td> </tr>
+    <tr><td></tr>
     </table>
  </div>
 </div>
