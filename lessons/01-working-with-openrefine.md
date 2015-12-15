@@ -132,7 +132,5 @@ If data in a column needs to be split into multiple columns, and the strings in 
 - Move columns around
 - Collapse and expand columns
 - Sorting data
--
-
 
 Previous: [Getting Started with OpenRefine](00-getting-started.html)  Next: [Scripts from OpenRefine](02-scripts.html)
