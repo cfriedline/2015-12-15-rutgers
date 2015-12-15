@@ -7,10 +7,11 @@ minutes:
 
 # Learning Objectives
 
-* Introduce concept of facets
+* Introduce concept of `facets`
 * Show split columns by defined separator
 * Show power of include / exclude, sort by name / count
-* Show the power of clustering algorithms to reveal data patterns, data snafus
+* Show the power of clustering algorithms to reveal data
+patterns, data snafus
 * Show the power of undo / redo.
 
 ----------------------------------------------------
@@ -34,9 +35,9 @@ If you haven't already, download the data from:
 ~~~
 - Click Browse, find Portal_rodents_19772002_scinameUUIDs.csv
 - Click next to open Portal_rodents_19772002_scinameUUIDs.csv
-- Refine gives you a preview - a chance to show you it understood the file. If, for example, your file was really tab-delimited, the preview might look strange, you would choose the correct separator in the box shown and click "update preview."
+- Refine gives you a preview - a chance to show you it understood the file. If, for example, your file was really delimited with tabs, the preview might look strange, you would choose the correct separator in the box shown and click "update preview."
 
-If all looks well, click _Create Project._
+If all looks well, click "Create Project"
 ~~~
 
 ## Faceting
@@ -52,6 +53,7 @@ Typically, you create a facet on a particular column. The facet summarizes the c
 
 [More on faceting](https://github.com/OpenRefine/OpenRefine/wiki/Faceting)
 
+
 ~~~
 - Scroll over to the scientificName column
 - Click the down arrow and choose > Facet > Text facet
@@ -59,27 +61,63 @@ Typically, you create a facet on a particular column. The facet summarizes the c
 - Edit. Note that at any time, in any cell of the Facet box, or data cell in the Refine window, you have access to "edit" and can fix an error immediately. Refine will even ask you if you'd like to make that same correction to every value it finds like that one (or not).
 ~~~
 
+### Selecting from the facet by size
+
+At the bottom of the facet list, there is the option to **Facet by choice counts**.  Clicking this opens a new dialog that can futher reduce your original facet (e.g., if you only wanted to look at a range, say, in the middle of the distribution without scrolling)
+
+### Editing a facet
+
+At the right of each text entry in the facet, there is an **edit** option. This can be very useful if you have fields with white space in them that make them appear to be unique, when in fact they are not.  Explore this with the *Ammospermophilus harrisi* species.
+
+### Including and excluding
+
+You can decide what data you want to work on in a similar way to **edit**.
+
+### Undo and Redo
+
+Because Refine does not operate on your original data, you can undo and redo as much as you need to without affecting anything.  To see this in action, rename an element in the facet to something else. You can now go to the  **Undo/Redo** section.  If you select a previous edit, and go back to your facet, you can see that your renaming operation has been undone. This may not work exactly as you expect, so it's worth exploring to see how this operates.
+
+When you're finished with your facet, you can remove it using the **Remove All** button
+
+**Question**: Is it possible to skip around in your history, or can you make non-linear edits based on the history?
+
+### Numeric facets
+
+* For a column containing numeric data, select the appropriate facet.
+
+### Finding duplicates
+
+~~~
+- Select the scientificName column again and go to "Facet | Customized facets | Duplicates facet"
+- Selecting true/false will show you which entries in the scientificName column have duplicates (which may be OK, depending on your data)
+~~~
+
+You can see that by building up multiple facets you can really start to drill down into your data with little effort.  This can even be further extended using **Text filters**.  Check those out next.
+
+
 ## Cluster
 
-One of the most magical bits of Refine, the moment you realize what you've been missing. Refine has several clustering algorithms built in. Experiment with them, and learn more about these algorithms and how they work.
+One of the most magical bits of Refine is the ability to use some machine learning to look for patterns in your data values that might be hard to spot (like whitespace). This is called *Clustering*. Refine has several clustering algorithms built-in. Take some time to experiment with them, and learn more about these algorithms and how they work.
 
 [More on clustering](https://github.com/OpenRefine/OpenRefine/wiki/Clustering-In-Depth)
 
 In OpenRefine, clustering refers to the operation of "finding groups of different values that might be alternative representations of the same thing". For example, the two strings "New York" and "new york" are very likely to refer to the same concept and just have capitalization differences. Likewise, "Gödel" and "Godel" probably refer to the same person.
 
 ~~~
-- In this example, in the scientificName Text Facet we created in the step above, click the _Cluster_ button.
+- In this example, in the scientificName Text Facet we created in the step above, click the "Cluster" button.
 - In the resulting pop-up window, you can change the algorithm method, and keying function. Try different combinations to see the difference.
-- For example, with this dataset, the _nearest neighbor_ method with the _PPM_ keying function shows the power of clustering the best.
+- For example, with this dataset, the "nearest neighbor" method with the "PPM" keying function shows the power of clustering the best.
 - Intentional errors in these scientific names have been introduced to show how errors (typos) in any position can be found with this method. All errors can then be fixed by simply entering the correct value in the box on the right. Often, the algorithm has guessed correctly.
-- After corrections are made in this window, you can either Merge and Close the Cluster pop-up, or Merge and Re-cluster.
+- After corrections are made in this window, you can either Merge
+and Close the Cluster pop-up, or Merge and Re-cluster.
 ~~~
+
 
 ## Split / Leading - Trailing Whitespace / Undo - Redo
 
 If data in a column needs to be split into multiple columns, and the strings in the cells are separated by a common separator (say a comma, or a space), you can use that separator to divide up the bits into their own columns.
 
-~~~
+
 - Go to the drop-down tab at the top of the column that you need to split into multiple columns
 - For example, go to the scientificName column > from drop-down choose Edit Column > Split into several columns
 - In the pop-up, for separator, remove the comma, put in a space
@@ -88,6 +126,13 @@ If data in a column needs to be split into multiple columns, and the strings in 
 - This will reveal an error in a few names that have spaces at the beginning (so-called leading white space).
 - These can be easily removed with another Refine feature in the column drop-down choices. See drop-down: Edit cells > Common transforms > Remove leading and trailing whitespace
 - To Undo create columns, look just above the scientificName cluster in the left side of the screen. Click where it says Undo / Redo. Click back one step (all steps, all changes are saved here). Just go back to the previous step and click. The extra columns will be gone.
-~~~
+
+## Other things you can do
+
+- Move columns around
+- Collapse and expand columns
+- Sorting data
+-
+
 
 Previous: [Getting Started with OpenRefine](00-getting-started.html)  Next: [Scripts from OpenRefine](02-scripts.html)
