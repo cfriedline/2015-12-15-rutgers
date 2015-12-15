@@ -137,10 +137,22 @@ to their ongoing research.
 <li>Twitter hashtag: <a href=http://www.twitter.com/#datacRU>#datacRU</a>
 <p>
 
-    <a class="twitter-timeline"
-    href="https://twitter.com/hashtag/datacRU"
-    data-widget-id="676823846842933252" width=300, height=400>#datacRU Tweets</a>
-
+    
+    <!-- DC Twitter Settings -->
+    <script type="text/javascript">
+    jQuery(function ($) {
+        $("#query").tweet({
+            avatar_size: 16, // avatar size in px
+            count: 5, // how many tweets to show
+            query: "#datacRU", // search query
+            loading_text: "searching twitter...",
+            refresh_interval: 5 // seconds before next refresh
+        });
+    });
+    </script>
+    <!-- DC Twitter Start -->
+    <div id="query" class="query" style="width:80%;"></div>
+    <!-- DC Twitter End -->
 
 
 <hr/>
