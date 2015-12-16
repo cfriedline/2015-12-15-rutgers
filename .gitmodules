@@ -1,3 +1,0 @@
-[submodule "kramdown-with-pygments"]
-	path = _plugins/kramdown-with-pygments
-	url = https://github.com/mvdbos/kramdown-with-pygments.git
