@@ -28,7 +28,7 @@ errors by making mistakes while processing each file by hand.
 Let's write a simple for loop that simulates what a kid would say during a
 spelling bee:
 
-~~~python
+~~~ python
 >>> word = 'species'
 >>> print word
 species
@@ -52,7 +52,7 @@ entry in `word` every time the loop goes around. We can call the loop variable
 anything we like. After the loop finishes, the loop variable will still exist
 and will have the value of the last entry in the collection:
 
-~~~python
+~~~ python
 >>> word = 'species'
 >>> for letter in word:
 ...    pass
@@ -82,7 +82,7 @@ file.
 Let's start by making a new directory inside the folder `data` to store all of
 these files using the module `os`:
 
-~~~python
+~~~ python
     import os
 
     os.mkdir('data/yearly_files')
@@ -91,7 +91,7 @@ these files using the module `os`:
 The command `os.mkdir` is equivalent to `mkdir` in the shell. Just so we are
 sure, we can check that the new directory was created within the `data` folder:
 
-~~~python
+~~~ python
 >>> os.listdir('data')
 ['plots.csv',
  'portal_mammals.sqlite',
@@ -110,7 +110,7 @@ data into memory as a DataFrame, how to select a subset of the data using some
 criteria, and how to write the DataFrame into a csv file. Let's write a script
 that performs those three steps in sequence for the year 2002:
 
-~~~python
+~~~ python
 import pandas as pd
 
 # Load the data into a DataFrame
@@ -140,7 +140,7 @@ be integers. If this function only receives two numbers, it assumes that the
 step length is 1. If it only receives one number, it assumes that the sequence
 of numbers starts at zero.
 
-~~~python
+~~~ python
 >>> for year in range(1977,2002):
 ...    filename = 'data/yearly_files/surveys' + str(year) + '.csv'
 ...    print filename
@@ -178,14 +178,14 @@ add integers to the sequence as long as they are less than the stop value. This
 is easier to see if we create a sequence of numbers that stops part-way through
 a step:
 
-~~~python
+~~~ python
 >>> print 'This one stops at half a step:', range(0,5,2)
 This one stops at half a step: [0, 2, 4]
 ~~~
 
 Notice, that the output is the same if your range ends at 6.
 
-~~~python
+~~~ python
 >>> print 'This one stops at half a step, too:', range(0,6,2)
 This one stops at half a step, too: [0, 2, 4]
 ~~~
@@ -194,7 +194,7 @@ To write a loop that includes the year 2002, we must make the stop value for
 `range` an integer greater than that value but not so large that the sequence
 goes too far:
 
-~~~python
+~~~ python
 >>> for year in range(1977,2003):
 ...     filename = 'data/yearly_files/surveys' + str(year) + '.csv'
 ...     print filename
@@ -229,7 +229,7 @@ data/yearly_files/surveys2002.csv
 
 We can now add the rest of the steps we need to create separate text files:
 
-~~~python
+~~~ python
 # Load the data into a DataFrame
 surveys_df = pd.read_csv('data/surveys.csv')
 
@@ -300,7 +300,7 @@ easy to write functions that can be used by different programs.
 
 Functions are declared following this general structure:
 
-~~~python
+~~~ python
 def this_is_the_function_name(input_argument1, input_argument2):
 
     # The body of the function is indented
@@ -318,7 +318,7 @@ it is called, it includes a return statement at the end.
 
 This is how we call the function:
 
-~~~python
+~~~ python
 >>> product_of_inputs = this_is_the_function_name(2,5)
 The function arguments are: 2 5 (this is done inside the function!)
 
@@ -342,7 +342,7 @@ many different "chunks" of this code that we can turn into functions, and we can
 even create functions that call other functions inside them. Let's first write a
 function that separates data for just one year and saves that data to a file:
 
-~~~python
+~~~ python
 def one_year_csv_writer(this_year, all_data):
     """
     Writes a csv file for data from a given year.
@@ -365,11 +365,11 @@ is running and is therefore not necessary, but it is good practice to include
 docstrings as a reminder of what the code does. Docstrings in functions also
 become part of their 'official' documentation:
 
-~~~python
+~~~ python
 one_year_csv_writer?
 ~~~
 
-~~~python
+~~~ python
 one_year_csv_writer(2002,surveys_df)
 ~~~
 
@@ -383,7 +383,7 @@ the entire For loop by simply looping through a sequence of years and repeatedly
 calling the function we just wrote, `one_year_csv_writer`:
 
 
-~~~python
+~~~ python
 def yearly_data_csv_writer(start_year, end_year, all_data):
     """
     Writes separate csv files for each year of data.
@@ -406,7 +406,7 @@ first and last year for which we want files, we can even use this function to
 create files for a subset of the years available. This is how we call this
 function:
 
-~~~python
+~~~ python
 # Load the data into a DataFrame
 surveys_df = pd.read_csv('data/surveys.csv')
 
@@ -448,7 +448,7 @@ sign in the function declaration. Any arguments in the function without default
 values (here, `all_data`) is a required argument and MUST come before the
 argument with default values (which are optional in the function call).
 
-~~~python
+~~~ python
     def yearly_data_arg_test(all_data, start_year = 1977, end_year = 2002):
         """
         Modified from yearly_data_csv_writer to test default argument values!
@@ -480,7 +480,7 @@ But what if our dataset doesn't start in 1977 and end in 2002? We can modify the
 function so that it looks for the start and end years in the dataset if those
 dates are not provided:
 
-~~~python
+~~~ python
     def yearly_data_arg_test(all_data, start_year = None, end_year = None):
         """
         Modified from yearly_data_csv_writer to test default argument values!
@@ -533,7 +533,7 @@ The body of the test function now has two conditional loops (if loops) that
 check the values of `start_year` and `end_year`. If loops execute the body of
 the loop when some condition is met. They commonly look something like this:
 
-~~~python
+~~~ python
     a = 5
 
     if a<0: # meets first condition?
@@ -575,7 +575,7 @@ calling the function using keyword arguments, where each of the arguments in the
 function definition is associated with a keyword and the function call passes
 values to the function using these keywords:
 
-~~~python
+~~~ python
     def yearly_data_arg_test(all_data, start_year = None, end_year = None):
         """
         Modified from yearly_data_csv_writer to test default argument values!
@@ -632,7 +632,7 @@ statements!)
 
 3. The code below checks to see whether a directory exists and creates one if it doesn't. Add some code to your function that writes out the CSV files, to check for a directory to write to.
 
-~~~Python
+~~~ python
 	if 'dirNameHere' in os.listdir('.'):
 	    print 'Processed directory exists'
 	else:

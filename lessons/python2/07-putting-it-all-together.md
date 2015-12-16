@@ -39,7 +39,7 @@ If you are still having trouble importing the data as a table using Pandas,
 check the documentation. You can open the docstring in an ipython notebook using
 a question mark. For example:
 
-~~~python
+~~~ python
     import pandas as pd
     pd.read_csv?
 ~~~
@@ -54,7 +54,7 @@ you. In the streamgage file, those values might be the date, time, and discharge
 measurements. Convert any measurements in imperial units into SI units. You can
 also change the name of the columns in the DataFrame like this:
 
-~~~python
+~~~ python
     df = pd.DataFrame({'1stcolumn':[100,200], '2ndcolumn':[10,20]}) # this just creates a DataFrame for the example!
     print 'With the old column names:\n' # the \n makes a new line, so it's easier to see
     print df
@@ -105,7 +105,7 @@ figure with multiple plots using the function `subplot()`.
 
 First, import the pyplot toolbox:
 
-~~~python
+~~~ python
     import matplotlib.pyplot as plt
 ~~~
 
@@ -113,7 +113,7 @@ By default, matplotlib will create the figure in a separate window. When using
 ipython notebooks, we can make figures appear in-line within the notebook by
 writing:
 
-~~~python
+~~~ python
     %matplotlib inline
 ~~~
 
@@ -121,7 +121,7 @@ We can start by plotting the values of a list of numbers (matplotlib can handle
 many types of numeric data, including numpy arrays and pandas DataFrames - we
 are just using a list as an example!):
 
-~~~python
+~~~ python
     list_numbers = [1.5, 4, 2.2, 5.7]
     plt.plot(list_numbers)
     plt.show()
@@ -140,7 +140,7 @@ function `plot()` receives two lists, it assumes the first one is the x-values
 and the second the y-values. The line connecting the points will follow the list
 in order:
 
-~~~python
+~~~ python
     plt.plot([6.8, 4.3, 3.2, 8.1], list_numbers)
     plt.show()
 ~~~
@@ -151,7 +151,7 @@ line. For example, we can make the line red (`'r'`), with circles at every data
 point (`'o'`), and a dot-dash pattern (`'-.'`). Look through the matplotlib
 gallery for more examples.
 
-~~~python
+~~~ python
     plt.plot([6.8, 4.3, 3.2, 8.1], list_numbers, 'ro-.')
     plt.axis([0,10,0,6])
     plt.show()
@@ -167,7 +167,7 @@ A single figure can include multiple lines, and they can be plotted using the
 same `plt.plot()` command by adding more pairs of x values and y values (and
 optionally line styles):
 
-~~~python
+~~~ python
     import numpy as np
 
     # create a numpy array between 0 and 10, with values evenly spaced every 0.5
@@ -190,7 +190,7 @@ won't know to which line to assign the value of the argument label. Multiple
 lines can also be plotted in the same figure by calling the `plot()` function
 several times:
 
-~~~python
+~~~ python
     # red dashes with no symbols, blue squares with a solid line, and green triangles with a dotted line
     plt.plot(t, t, 'r--', label='linear')
     plt.plot(t, t**2, 'bs-', label='square')
@@ -214,7 +214,7 @@ plotting area, and any plotting functions are directed to those axes. To make
 more than one figure, we use the command `plt.figure()` with an increasing
 figure number inside the parentheses:
 
-~~~python
+~~~ python
     # this is the first figure
     plt.figure(1)
     plt.plot(t, t, 'r--', label='linear')
@@ -238,7 +238,7 @@ A single figure can also include multiple plots in a grid pattern. The
 `subplot()` command especifies the number of rows, the number of columns, and
 the number of the space in the grid that particular plot is occupying:
 
-~~~python
+~~~ python
     plt.figure(1)
 
     plt.subplot(2,2,1) # two row, two columns, position 1

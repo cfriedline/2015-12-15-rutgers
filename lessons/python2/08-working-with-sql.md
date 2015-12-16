@@ -30,7 +30,7 @@ SQLite databases.
 
 [sqlite3]: https://docs.python.org/2.7/library/sqlite3.html
 
-~~~python
+```python
 import sqlite3
 
 # Create a SQL connection to our SQLite database
@@ -44,7 +44,7 @@ for row in cur.execute('SELECT * FROM species;'):
 
 #Be sure to close the connection.
 con.close()
-~~~
+```
 
 ## Accessing data stored in SQLite using Python and Pandas
 
@@ -52,7 +52,7 @@ Using pandas, we can import results of a SQLite query into a dataframe. Note tha
 you can use the same SQL commands / syntax that we used in the SQLite lesson. An
 example of using pandas together with sqlite is below:
 
-~~~python
+~~~ python
 import pandas as pd
 import sqlite3
 

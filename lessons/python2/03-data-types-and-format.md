@@ -70,14 +70,14 @@ Now that we're armed with a basic understanding of numeric and character data
 types, let's explore the format of our survey data. We'll be working with the
 same `surveys.csv` dataset that we've used in previous lessons.
 
-~~~python
+~~~ python
 # note that pd.read_csv is used because we imported pandas as pd
 surveys_df = pd.read_csv("surveys.csv")
 ~~~
 
 Remember that we can check the type of an object like this:
 
-~~~python
+~~~ python
 type(surveys_df)
 ~~~
 
@@ -87,7 +87,7 @@ Next, let's look at the structure of our surveys data. In pandas, we can check
 the type of one column in a DataFrame using the syntax
 `dataFrameName[column_name].dtype`:
 
-~~~python
+~~~ python
 surveys_df['sex'].dtype
 ~~~
 
@@ -96,7 +96,7 @@ surveys_df['sex'].dtype
 A type 'O' just stands for "object" which in Pandas' world is a string
 (characters).
 
-~~~python
+~~~ python
 surveys_df['record_id'].dtype
 ~~~
 
@@ -106,7 +106,7 @@ The type `int64` tells us that python is storing each value within this column
 as a 64 bit integer. We can use the `dat.dtypes` command to view the data type
 for each column in a DataFrame (all at once).
 
-~~~python
+~~~ python
 surveys_df.dtypes
 ~~~
 
@@ -139,7 +139,7 @@ the data type can impact mathematical operations on our data. Addition,
 subtraction and multiplication work on floats and integers as we'd expect.
 However, division works differently.
 
-~~~python
+~~~ python
 print 5+5
 10
 
@@ -150,7 +150,7 @@ print 24-4
 If we divide one integer by another, we get the quotient without the remainder.
 In the example below, 9 goes into 5 as an integer 0 times.
 
-~~~python
+~~~ python
 print 5/9
 0
 # 3 goes into 10, 3 times
@@ -161,7 +161,7 @@ print 10/3
 If either part of the division is a float, on the other hand, python
 returns a floating-point result:
 
-~~~python
+~~~ python
 print '10.0/3 is:', 10.0/3
 10.0/3 is: 3.33333333333
 ~~~
@@ -176,14 +176,14 @@ write it as 5.0/9, 5/9.0, or some other variation.
 Another way to create a floating-point answer is to explicitly tell the computer
 that you desire one. This is achieved by **casting** one of the numbers as a float:
 
-~~~python
+~~~ python
 print 'float(10)/3 is:', float(10)/3
 ~~~
 
 We can also convert a floating point number to an integer. Notice that Python by
 default rounds down when it converts from floating point to integer.
 
-~~~python
+~~~ python
 a = 7.33
 # convert a to integer
 int(a)
@@ -200,7 +200,7 @@ Getting back to our data, we can modify the format of values within our data, if
 we want. For instance, we could convert the `record_id` field to floating point
 values.
 
-~~~python
+~~~ python
 # convert the record_id field from an integer to a float
 surveys_df['record_id'] = surveys_df['record_id'].astype('float64')
 surveys_df['record_id'].dtype
@@ -210,7 +210,7 @@ surveys_df['record_id'].dtype
 
 What happens if we try to convert weight values to integers?
 
-~~~python
+~~~ python
 surveys_df['wgt'].astype('int')
 ~~~
 
@@ -222,7 +222,7 @@ an empty cell in a CSV or Excel sheet as a NaN. NaNs have some desirable
 properties: if we were to average the `wgt` column without replacing our NaNs,
 Python would know to skip over those cells.
 
-~~~python
+~~~ python
 surveys_df['wgt'].mean()
 42.672428212991356
 ~~~
@@ -251,7 +251,7 @@ learned in lesson 02, we can figure out how many rows contain NaN values for
 weight. We can also create a new subset from our data that only contains rows
 with weight values > 0 (ie select meaningful weight values):
 
-~~~python
+~~~ python
 len(surveys_df[pd.isnull(surveys_df.wgt)])
 # how many rows have wgt values?
 len(surveys_df[surveys_df.wgt> 0])
@@ -260,7 +260,7 @@ len(surveys_df[surveys_df.wgt> 0])
 We can replace all NaN values with zeroes using the `.fillna()` method (after
 making a copy of the data so we don't lose our work):
 
-~~~python
+~~~ python
 df1 = surveys_df
 # fill all NaN values with 0
 df1['wgt'] = df1['wgt'].fillna(0)
@@ -270,7 +270,7 @@ However NaN and 0 yield different analysis results. The mean value when NaN
 values are replaced with 0 is different from when NaN values are simply thrown
 out or ignored.
 
-~~~python
+~~~ python
 df1['wgt'].mean()
 38.751976145601844
 ~~~
@@ -278,7 +278,7 @@ df1['wgt'].mean()
 We can fill NaN values with any value that we chose. The code below fills all
 NaN values with a mean for all wgt values.
 
-~~~python
+~~~ python
  df1['wgt'] = df['wgt'].fillna(df['wgt'].mean())
 ~~~
 

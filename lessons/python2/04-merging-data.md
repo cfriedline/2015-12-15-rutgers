@@ -20,7 +20,7 @@ DataFrames](http://pandas.pydata.org/pandas-docs/stable/merging.html) including
 To work through the examples below, we first need to load the species and
 surveys files into pandas DataFrames. In iPython:
 
-~~~python
+~~~ python
 >>> import pandas as pd
 >>> surveys_df = pd.read_csv('data/surveys.csv', keep_default_na=False, na_values=[""])
 >>> surveys_df
@@ -73,7 +73,7 @@ We can use the `concat` function in Pandas to append either columns or rows from
 one DataFrame to another.  Let's grab two subsets of our data to see how this
 works.
 
-~~~python
+~~~ python
 # read in first 10 lines of surveys table
 surveySub = surveys_df.head(10)
 # grab the last 10 rows (minus the last one)
@@ -91,7 +91,7 @@ same columns and associated column format in both datasets. When we stack
 horizonally, we want to make sure what we are doing makes sense (ie the data are
 related in some way).
 
-~~~python
+~~~ python
 	# stack the DataFrames on top of each other
 	verticalStack = pd.concat([surveySub, surveySubLast10], axis=0)
 
@@ -102,7 +102,7 @@ related in some way).
 ### Row Index Values and Concat
 Have a look at the `horizontalStack` dataframe? Notice anything unusual? The row indexes for the two data frames `surveySub` and `surveySubLast10` are not the same. Thus, when Python tries to concatenate the two dataframes it can't place them next to each other. We can reindex our second dataframe using the `reset_index()` method.
 
- ~~~python
+ ~~~ python
 #reindex the data and then run concat again
 
 surveySubLast10 = surveysSubLast10.reset_index()
@@ -119,7 +119,7 @@ below will by default save the data into the current working directory. We can
 save it to a different folder by adding the foldername and a slash to the file
 `verticalStack.to_csv('foldername/out.csv')`.
 
-~~~python
+~~~ python
 # Write DataFrame to CSV
 verticalStack.to_csv('out.csv')
 ~~~
@@ -128,7 +128,7 @@ Check out your working directory to make sure the CSV wrote out properly, and
 that you can open it! If you want, try to bring it back into python to make sure
 it imports properly.
 
-~~~python
+~~~ python
 # for kicks read our output back into python and make sure all looks good
 newOutput = pd.read_csv('out.csv', keep_default_na=False, na_values=[""])
 ~~~
@@ -179,7 +179,7 @@ To better understand joins, let's grab the first 10 lines of our data as a
 subset to work with. We'll use the `.head` method to do this. We'll also read
 in a subset of the species table.
 
-~~~python
+~~~ python
 # read in first 10 lines of surveys table
 surveySub = surveys_df.head(10)
 
@@ -202,7 +202,7 @@ the same name that also contain the same data. If we are less lucky, we need to
 identify a (differently-named) column in each DataFrame that contains the same
 information.
 
-~~~python
+~~~ python
 speciesSub.columns
 
 Out[32]: Index([u'species_id', u'genus', u'species', u'taxa'], dtype='object')
@@ -237,7 +237,7 @@ page](http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/) is below:
 The pandas function for performing joins is called `merge` and an Inner join is
 the default option:  
 
-~~~python
+~~~ python
 merged_inner = pd.merge(left=surveySub,right=speciesSub, left_on='species', right_on='species_id')
 
 merged_inner
@@ -294,7 +294,7 @@ Notice that the output of the join above includes two new columns `species_x` an
 
 ### Fix column headers
 
-~~~python
+~~~ python
 #create a list of column headings
 cols = list(surveys_df.columns)
 #change the species column to species_id
@@ -328,7 +328,7 @@ have values for the join key(s) in the `left` DataFrame.
 A left join is performed in pandas by calling the same `merge` function used for
 inner join, but using the `how='left'` argument:
 
-~~~python
+~~~ python
 merged_left = pd.merge(left=surveySub,right=speciesSub, how='left', left_on='species', right_on='species_id')
 
 merged_left
@@ -355,7 +355,7 @@ number of rows** as the original `surveysSub` DataFrame. When we inspect
 come from `speciesSub` (i.e., `species_id`, `genus`, `species_y`, and `taxa`) is
 missing (they contain NaN values):
 
-~~~python
+~~~ python
 merged_left[ pd.isnull(merged_left.species_id) ]
 # Output:
  	record_id 	month 	day 	year 	plot 	species_x 	sex 	wgt 	species_id 	genus 	species_y 	taxa

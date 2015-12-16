@@ -25,7 +25,7 @@ slicing and subsetting.
 We will continue to use the surveys dataset that we worked with in the last
 exercise. Let's reopen it:
 
-~~~python
+~~~ python
 # first make sure pandas is loaded
 import pandas as pd
 # read in the survey csv
@@ -45,7 +45,7 @@ We use square brackets `[]` to select a subset of an Python object. For example,
 we can select all of data from a column named `species` from the `surveys_df`
 DataFrame by name:
 
-~~~python
+~~~ python
 surveys_df['species']
 # this syntax, calling the column as an attribute, gives you the same output
 surveys_df.species
@@ -54,7 +54,7 @@ surveys_df.species
 We can also create an new object that contains the data within the species
 column as follows:
 
-~~~python
+~~~ python
 # create an object named surveys_species that only contains the species column
 surveys_species = surveys_df['species']
 ~~~
@@ -65,7 +65,7 @@ order. This is useful when we need to reorganize our data.
 **NOTE:** If a column name is not contained in the DataFrame, an exception
 (error) will be raised.
 
-~~~python
+~~~ python
 # select the species and plot columns from the DataFrame
 surveys_df[['species', 'plot']]
 # what happens when you flip the order?
@@ -85,7 +85,7 @@ indexing. This means that the first element in an object is located at position
 0. This is different from other tools like R and Matlab that index elements
 within objects starting at 1.
 
-~~~python
+~~~ python
 # Create a list of numbers:
 a = [1,2,3,4,5]
 ~~~
@@ -109,7 +109,7 @@ DataFrame. To slice out a set of rows, you use the following syntax:
 output. The stop bound is one step BEYOND the row you want to select. So if you
 want to select rows 0, 1 and 2 your code would look like this:
 
-~~~python
+~~~ python
 # select rows 0,1,2 (but not 3)
 surveys_df[0:3]
 ~~~
@@ -117,7 +117,7 @@ surveys_df[0:3]
 The stop bound in Python is different from what you might be used to in
 languages like Matlab and R.
 
-~~~python
+~~~ python
 # select the first, second and third rows from the surveys variable
 surveys_df[0:3]
 # select the first 5 rows (rows 0,1,2,3,4)
@@ -129,7 +129,7 @@ surveys_df[-1:]
 We can also reassign values within subsets of our DataFrame. But before we do that, let's make a
 copy of our DataFrame so as not to modify our original imported data.
 
-~~~python
+~~~ python
 # copy the surveys dataframe so we don't modify the original DataFrame
 surveys_copy = surveys_df
 
@@ -139,7 +139,7 @@ surveys_copy[0:3] = 0
 
 Next, try the following code:
 
-~~~python
+~~~ python
 surveys_copy.head()
 surveys_df.head()
 ~~~
@@ -153,7 +153,7 @@ It creates a new variable y that refers to the **same** object x refers to. This
 `surveys_copy` DataFrame, the `surveys_df` DataFrame is modified too. To create a fresh copy of the `surveys_df`
 DataFrame we use the syntax y=x.copy().
 
-~~~python
+~~~ python
 surveys_copy= surveys_df.copy()
 
 ~~~
@@ -170,7 +170,7 @@ To select a subset of rows AND columns from our DataFrame, we can use the `iloc`
 method. For example, we can select month, day and year (columns 2, 3 and 4 if we
 start counting at 1), like this:
 
-~~~python
+~~~ python
 surveys_df.iloc[0:3, 1:4]
 ~~~
 
@@ -189,7 +189,7 @@ ask for 0:3, you are actually telling python to start at index 0 and select rows
 
 Let's next explore some other ways to index and select subsets of data:
 
-~~~python
+~~~ python
 # select all columns for rows of index values 0 and 10
 surveys_df.loc[[0, 10], :]
 # what does this do?
@@ -210,7 +210,7 @@ column location within the data frame using the `iloc` function:
 `dat.iloc[row,column]`.
 
 
-~~~python
+~~~ python
 surveys_df.iloc[2,6]
 ~~~
 
@@ -227,7 +227,7 @@ the element that is 3 rows down and 7 columns over in the DataFrame.
 
 1. What happens when you type:
 
-~~~python
+~~~ python
 surveys_df[0:3]
 surveys_df[:5]
 surveys_df[-1:]
@@ -243,13 +243,13 @@ surveys_df[-1:]
 We can also select a subset of our data using criteria. For example, we can
 select all rows that have a year value of 2002.
 
-~~~python
+~~~ python
 surveys_df[surveys_df.year == 2002]
 ~~~
 
 Which produces the following output:
 
-~~~python
+~~~ python
        record_id  month  day  year  plot species  sex  wgt
 33320      33321      1   12  2002     1      DM    M   44
 33321      33322      1   12  2002     1      DO    M   58
@@ -274,13 +274,13 @@ Which produces the following output:
 
 Or we can select all rows that do not contain the year 2002.
 
-~~~python
+~~~ python
 surveys_df[surveys_df.year != 2002]
 ~~~
 
 We can define sets of criteria too:
 
-~~~python
+~~~ python
 surveys_df[(surveys_df.year >= 1980) & (surveys_df.year <= 1985)]
 ~~~
 
@@ -320,7 +320,7 @@ we also need to understand `BOOLEAN` objects in python.
 
 Boolean values include `true` or `false`. So for example
 
-~~~python
+~~~ python
 # set x to 5
 x = 5
 # what does the code below return?
@@ -342,13 +342,13 @@ Each cell with a null value will be assigned a value of  `True` in the new
 boolean object.
 
 
-~~~python
+~~~ python
 pd.isnull(surveys_df)
 ~~~
 
 A snippet of the output is below:
 
-~~~python
+~~~ python
       record_id  month    day   year   plot species    sex    wgt
 0         False  False  False  False  False    True  False   True
 1         False  False  False  False  False    True  False   True
@@ -370,7 +370,7 @@ A snippet of the output is below:
 To select the rows where there are null values,  we can use
 the mask as an index to subset our data as follows:
 
-~~~python
+~~~ python
 #To select just the rows with NaN values, we can use the .any method
 surveys_df[pd.isnull(surveys_df).any(axis=1)]
 ~~~
@@ -380,7 +380,7 @@ We will explore different ways of dealing with these in Lesson 03.
 
 We can run `isnull` on a particular column too. What does the code below do?
 
-~~~python
+~~~ python
 # what does this do?
 emptyWeights = surveys_df[pd.isnull(surveys_df).any(axis=1)]['wgt']
 ~~~

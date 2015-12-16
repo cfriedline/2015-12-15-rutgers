@@ -100,7 +100,7 @@ R.
 First, let's make sure the Python Pandas library is loaded. We will import
 Pandas using the nickname `pd`.
 
-~~~python
+~~~ python
 import pandas as pd
 ~~~
 
@@ -110,14 +110,14 @@ you are working in IPython Notebook, be sure to start the notebook in the
 workshop repository.  If you didn't do that you can always set the working
 directory using the code below.
 
-~~~python
+~~~ python
 import os
 os.getcwd()
 # if this directory isn't right, use the command below to set the working directory
 os.chdir("YOURPathHere")
 ~~~
 
-~~~python
+~~~ python
 # note that pd.read_csv is used because we imported pandas as pd
 pd.read_csv("data/surveys.csv")
 ~~~
@@ -153,7 +153,7 @@ variable name by assigning a value to it using `=`.
 
 Let's call the imported survey data `surveys_df`:
 
-~~~python
+~~~ python
 surveys_df = pd.read_csv("data/surveys.csv")
 ~~~
 
@@ -161,7 +161,7 @@ Notice when you assign the imported DataFrame to a variable, Python does not
 produce any output on the screen. We can print the value of the `surveys_df`
 object by typing its name into the Python command prompt.
 
-~~~python
+~~~ python
 surveys_df
 ~~~
 
@@ -194,7 +194,7 @@ Now we can start manipulating our data. First, let's check the data type of the
 data stored in `surveys_df` using the `type` method. The `type` method and
 `__class__` attribute tell us that `surveys_df` is `<class 'pandas.core.frame.DataFrame'>`.
 
-~~~python
+~~~ python
 type(surveys_df)
 # this does the same thing as the above!
 surveys_df.__class__
@@ -251,7 +251,7 @@ first we need to figure out what we want to group by.
 
 Let's begin by exploring our data:
 
-~~~python
+~~~ python
 # Look at the column names
 surveys_df.columns.values
 ~~~
@@ -265,7 +265,7 @@ array(['record_id', 'month', 'day', 'year', 'plot', 'species', 'sex', 'wgt'], dt
 Let's get a list of all the species. The `pd.unique` function tells us all of
 the unique values in the species column.
 
-~~~python
+~~~ python
 pd.unique(surveys_df.species)
 ~~~
 
@@ -292,12 +292,12 @@ weight of all individuals per plot.
 We can calculate basic statistics for all records in a single column using the
 syntax below:
 
-~~~python
+~~~ python
 surveys_df['wgt'].describe()
 ~~~
 gives **output**
 
-~~~python
+~~~ python
 count    32283.000000
 mean        42.672428
 std         36.631259
@@ -311,7 +311,7 @@ dtype: float64
 
 We can also extract one specific metric if we wish:
 
-~~~python
+~~~ python
 surveys_df['wgt'].min()
 surveys_df['wgt'].max()
 surveys_df['wgt'].mean()
@@ -323,7 +323,7 @@ But if we want to summarize by one or more variables, for example sex, we can
 use Pandas' `.groupby` method. Once we've created a groupby DataFrame, we
 can quickly calculate summary statistics by a group of our choice.
 
-~~~python
+~~~ python
 # Group data by sex
 sorted = surveys_df.groupby('sex')
 ~~~
@@ -333,7 +333,7 @@ median, max, min, std and count for a particular column in the data. Pandas'
 `describe` function will only return summary values for columns containing
 numeric data.
 
-~~~python
+~~~ python
 # summary statistics for all numeric columns by sex
 sorted.describe()
 # provide the mean for each numeric column by sex
@@ -342,7 +342,7 @@ sorted.mean()
 
 `sorted.mean()` **OUTPUT:**
 
-~~~python
+~~~ python
         record_id        day         year       plot        wgt
 sex
 F    18036.412046  16.007138  1990.644997  11.440854  42.170555
@@ -390,14 +390,14 @@ Let's next create a list of unique species in our data. We can do this in a few
 ways, but we'll use `groupby` combined with a `count()` method.
 
 
-~~~python
+~~~ python
 # count the number of samples by species
 surveys_df['record_id'].groupby(surveys_df.species).count()
 ~~~
 
 Or, we can also count just the rows that have the species "DO":
 
-~~~python
+~~~ python
 surveys_df['record_id'].groupby(surveys_df.species).count()['DO']
 ~~~
 
@@ -434,7 +434,7 @@ Weight by species plot
 
 We can also look at how many animals were captured in each plot:
 
-~~~python
+~~~ python
 total_count=surveys_df.record_id.groupby(surveys_df['plot']).nunique()
 # let's plot that too
 total_count.plot(kind='bar');
@@ -494,7 +494,7 @@ a stacked plot.
 
 First we group data by plot and by sex, and then calculate a total for each plot.
 
-~~~python
+~~~ python
 by_plot_sex = surveys_df.groupby(['plot','sex'])
 plot_sex_count = by_plot_sex['wgt'].sum()
 ~~~
@@ -517,7 +517,7 @@ plot  sex
 
 Below we'll use `.unstack()` on our grouped data to figure out the total weight that each sex contributed to each plot.
 
-~~~python
+~~~ python
 by_plot_sex = surveys_df.groupby(['plot','sex'])
 plot_sex_count = by_plot_sex['wgt'].sum()
 plot_sex_count.unstack()
@@ -539,7 +539,7 @@ Now, create a stacked bar plot with that data where the weights for each sex are
 
 Rather than display it as a table, we can plot the above data by stacking the values of each sex as follows:
 
-~~~python
+~~~ python
 by_plot_sex = surveys_df.groupby(['plot','sex'])
 plot_sex_count = by_plot_sex['wgt'].sum()
 spc = plot_sex_count.unstack()
